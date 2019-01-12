@@ -187,13 +187,14 @@ function Deductible(){
   events.forEach(function ded(event){
     if(event.options.deductibleReduction )
     event.price += event.persons
+    event.commission.privateaser += event.persons
   })
 }
 
 BookingPrice(); //step 1
-Deductible(); //step 4
 GroupDiscount(); //step 2
 Commission(); //step 3
+Deductible(); //step 4
 
 console.log(bars);
 console.log(events);
