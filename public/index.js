@@ -191,10 +191,37 @@ function Deductible(){
   })
 }
 
+function PayActors(){
+  actors.forEach(function(actor){
+    actor.payment.forEach(function(payment){
+      var event = events.find(function(element){
+        return element.id == actor.eventId
+      })
+      if(payment.who == "booker"){
+        payment.amount = event.price
+      }
+      if(payment.who == "bar"){
+        var commission = event.commission.insurance + event.commission.treasury + event.commission.privateaser
+        payment.amount = event.price - commission
+      }
+      if(payment.who == "insurance"){
+        payment.amount = event.commission.insurance
+      }
+      if(payment.who == "treasury"){
+        payment.amount = event.commission.treasury
+      }
+      if(payment.who == "privateaser"){
+        payment.amount = event.commission.privateaser
+      }
+    })
+  })
+}
+
 BookingPrice(); //step 1
 GroupDiscount(); //step 2
 Commission(); //step 3
 Deductible(); //step 4
+PayActors(); //step 5
 
 console.log(bars);
 console.log(events);
