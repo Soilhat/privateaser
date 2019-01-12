@@ -185,6 +185,7 @@ function Commission(){
 
 function Deductible(){
   events.forEach(function ded(event){
+    if(event.options.deductibleReduction )
     event.price += event.persons
   })
 }
