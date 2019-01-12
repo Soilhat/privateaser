@@ -172,8 +172,20 @@ function GroupDiscount(){
   }
 }
 
+function Commission(){
+  for (var i = events.length - 1; i >= 0; i--) {
+    var commission = events[i].price*0.3
+    events[i].commission.insurance = commission/2
+    commission/=2
+    events[i].commission.treasury = events[i].persons
+    commission-=events[i].persons
+    events[i].commission.privateaser = commission;
+  }
+}
+
 BookingPrice(); //step 1
 GroupDiscount(); //step 2
+Commission(); //step 3
 
 console.log(bars);
 console.log(events);
