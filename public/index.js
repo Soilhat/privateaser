@@ -179,11 +179,18 @@ function Commission(){
     commission/=2
     events[i].commission.treasury = events[i].persons
     commission-=events[i].persons
-    events[i].commission.privateaser = commission;
+    events[i].commission.privateaser = commission
   }
 }
 
+function Deductible(){
+  events.forEach(function ded(event){
+    event.price += event.persons
+  })
+}
+
 BookingPrice(); //step 1
+Deductible(); //step 4
 GroupDiscount(); //step 2
 Commission(); //step 3
 
